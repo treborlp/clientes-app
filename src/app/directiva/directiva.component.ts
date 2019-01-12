@@ -13,6 +13,7 @@ export class DirectivaComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   setList():void{
     this.habilitar = (this.habilitar==true)?false:true;
   }
