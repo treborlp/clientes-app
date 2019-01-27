@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     
-    <form (ngSubmit) = 'create()' >
+    <form>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="cliente.email" name="email" >
@@ -18,7 +18,10 @@
         <label for="exampleInputPassword1">Lastname</label>
         <input type="text" class="form-control"  placeholder="Lastname" [(ngModel)]="cliente.apellido" name="apellido">
       </div>
-      <button role="button" class="btn btn-primary">Crear</button>
+      <button role="button" class="btn btn-primary" (click) = 'create()' *ngIf="!cliente.id else elseBlock">Crear</button>
+      <ng-template #elseBlock>
+        <button role="button" class="btn btn-primary" (click) = 'update()'>Editar</button>
+      </ng-template>
     </form>
 
   </div>
