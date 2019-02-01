@@ -4,23 +4,47 @@
   </div>
   <div class="card-body">
     
-    <form>
+    <form #clienteForm="ngForm">
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="cliente.email" name="email" >
+        <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="cliente.email" name="email" required email #email="ngModel" >
+        <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)" >
+          <div *ngIf="email.errors.required">
+            El email es requerido
+          </div>
+          <div *ngIf="email.errors.email">
+            No presenta el formato correcto
+          </div>
+        </div>
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Name</label>
-        <input type="text" class="form-control" placeholder="Name" [(ngModel)]="cliente.nombre" name="nombre">
+        <input type="text" class="form-control" placeholder="Name" [(ngModel)]="cliente.nombre" name="nombre" required minlength="4" #nombre="ngModel" >
+        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+          <div *ngIf="nombre.errors.required">
+            Nombre es requerido
+          </div>
+          <div *ngIf="nombre.errors.minlength">
+            Minimo de caracteres: 4
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Lastname</label>
-        <input type="text" class="form-control"  placeholder="Lastname" [(ngModel)]="cliente.apellido" name="apellido">
+        <input type="text" class="form-control"  placeholder="Lastname" [(ngModel)]="cliente.apellido" name="apellido" #apellido="ngModel" required minlength="4">
+        <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+          <div *ngIf="apellido.errors.required" >
+            El apellido es requerido
+          </div>
+          <div *ngIf="apellido.errors.minlength" >
+            Minimo de caracteres: 4
+          </div>
+        </div>
       </div>
-      <button role="button" class="btn btn-primary" (click) = 'create()' *ngIf="!cliente.id else elseBlock">Crear</button>
+      <button role="button" class="btn btn-primary" (click) = 'create()' [disabled]="!clienteForm.form.valid"   *ngIf="!cliente.id else elseBlock">Crear</button>
       <ng-template #elseBlock>
-        <button role="button" class="btn btn-primary" (click) = 'update()'>Editar</button>
+        <button role="button" class="btn btn-primary" (click) = 'update()' [disabled]="!clienteForm.form.valid"  >Editar</button>
       </ng-template>
     </form>
 
