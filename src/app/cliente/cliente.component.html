@@ -5,10 +5,10 @@
     <div class="my-2 text-left">
       <button class="btn btn-rounded btn-success" [routerLink]="[ '/clientes/form' ]" >Crear Cliente</button>
     </div>
-    <div *ngIf="clientes?.length<=3 " class="alert alert-info" >
+    <div *ngIf="clientes?.length ==0 " class="alert alert-info" >
       Registros insuficientes para mostrar¡ sorry :(
     </div>
-    <table class="table table-bordered table-striped" *ngIf="clientes?.length > 3 ">
+    <table class="table table-bordered table-striped" *ngIf="clientes?.length > 0 ">
       <thead>
         <tr>
           <th>Id</th>
