@@ -20,19 +20,20 @@ export class ClienteService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getClientes(): Observable<Cliente[]>{
+  getClientes(page: number): Observable<any>{
     // return of(CLIENTES);  
     //return this.http.get<Cliente[]>(this.urlEndPoint);
-    return this.http.get(this.urlEndPoint).pipe(
-      map(response => {
-        let clientes = response as Cliente[];
+    return this.http.get(this.urlEndPoint+'/page/'+page).pipe(
+      map((response :any) => {
+       // let clientes = response as Cliente[];
 
-        return clientes.map(cliente => {
+         (response.content as Cliente[]).map(cliente => {
           cliente.nombre = cliente.nombre.toUpperCase(); //Convertimos el nombre a mayuscula
           let datePipe = new DatePipe('es');
           //cliente.createAt =datePipe.transform(cliente.createAt, 'EEEE dd, MMMM yyyy' ); //formatDate(cliente.createAt,'dd-MM-yyyy','en-US');
           return cliente;
         });
+        return response;
       })
     );
 

@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { DirectivaComponent } from './directiva/directiva.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { ClienteService } from './cliente/cliente.service';
+import { PaginatorComponent } from './paginator/paginator.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormComponent } from './cliente/form.component';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/clientes', pathMatch: 'full'},
   {path: 'directivas', component: DirectivaComponent},
   {path: 'clientes', component: ClienteComponent},
+  {path: 'clientes/page/:page', component: ClienteComponent},
   {path: 'clientes/form', component: FormComponent},
   {path: 'clientes/form/:id', component: FormComponent}
 ];
@@ -34,7 +36,8 @@ const routes: Routes = [
     FooterComponent,
     DirectivaComponent,
     ClienteComponent,
-    FormComponent
+    FormComponent,
+    PaginatorComponent
     
   ],
   imports: [
