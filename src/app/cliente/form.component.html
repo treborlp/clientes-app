@@ -34,6 +34,7 @@
           </div>
         </div>
       </div>
+
       <div class="form-group">
         <label for="exampleInputPassword1">Lastname</label>
         <input type="text" class="form-control"  placeholder="Lastname" [(ngModel)]="cliente.apellido" name="apellido" #apellido="ngModel" > <!-- required minlength="4" -->
@@ -46,6 +47,15 @@
           </div>
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="createAt">Fecha</label>
+        <input [matDatepicker]="myDatepicker" class="form-control"  placeholder="fecha" [(ngModel)]="cliente.createAt" name="createAt" #apellido="ngModel" style="display:inline; width: 50%" >
+        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+
+      </div>
+
       <button role="button" class="btn btn-primary" (click) = 'create()' [disabled]="!clienteForm.form.valid"   *ngIf="!cliente.id else elseBlock">Crear</button>
       <ng-template #elseBlock>
         <button role="button" class="btn btn-primary" (click) = 'update()' [disabled]="!clienteForm.form.valid"  >Editar</button>
