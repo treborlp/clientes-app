@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule} from '@angular/material';
 import { MatMomentDateModule} from '@angular/material-moment-adapter';
-
+import { DetalleComponent } from './cliente/detalle/detalle.component';
 
 //Internacionalizacion de la aplicacion
 import { registerLocaleData } from '@angular/common';
@@ -29,7 +29,8 @@ const routes: Routes = [
   {path: 'clientes', component: ClienteComponent},
   {path: 'clientes/page/:page', component: ClienteComponent},
   {path: 'clientes/form', component: FormComponent},
-  {path: 'clientes/form/:id', component: FormComponent}
+  {path: 'clientes/form/:id', component: FormComponent},
+  {path: 'clientes/ver/:id', component: DetalleComponent},
 ];
 
 @NgModule({
@@ -40,7 +41,8 @@ const routes: Routes = [
     DirectivaComponent,
     ClienteComponent,
     FormComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DetalleComponent
     
   ],
   imports: [
