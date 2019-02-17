@@ -37,7 +37,7 @@ export class DetalleComponent implements OnInit {
     
   }
 
-  subirFoto(event){
+  subirFoto(){
 
     if(!this.fotoSeleccionada){
       swal("Error upload: ","Choise a image","error");
@@ -49,6 +49,9 @@ export class DetalleComponent implements OnInit {
         }else if(event.type ===HttpEventType.Response){
           let response: any = event.body;
           this.cliente = response.cliente as Cliente;
+
+          this.modalService.notificarUpload.emit(this.cliente);
+          
           swal("Mensaje de subida",response.mensaje,"success");
         }
 
